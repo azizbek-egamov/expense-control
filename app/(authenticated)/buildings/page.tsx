@@ -204,17 +204,19 @@ export default function BuildingsPage() {
                   className="rounded-xl bg-slate-800/60 border border-slate-700/60 p-4 hover:border-slate-600 transition-all duration-200"
                 >
                   {/* Top row */}
-                  <div className="flex items-start justify-between mb-3">
-                    <Link href={`/buildings/${building.id}`} className="flex items-center gap-3 group min-w-0 flex-1">
+                  <div className="grid grid-cols-[1fr_auto] gap-2 mb-3 items-start">
+                    <Link href={`/buildings/${building.id}`} className="flex items-center gap-3 group min-w-0 overflow-hidden">
                       <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/30 transition-colors">
                         <Building2 className="w-5 h-5 text-emerald-400" />
                       </div>
-                      <div className="min-w-0">
-                        <h3 className="text-base font-semibold text-white truncate group-hover:text-emerald-400 transition-colors">{building.name}</h3>
-                        <p className="text-xs text-slate-500 truncate">{building.description || "Tavsif yo'q"}</p>
+                      <div className="min-w-0 flex-1 bg-transparent">
+                        <h3 className="text-base font-semibold text-white truncate group-hover:text-emerald-400 transition-colors block w-full">{building.name}</h3>
+                        <p className="text-xs text-slate-500 truncate block w-full">{building.description || "Tavsif yo'q"}</p>
                       </div>
                     </Link>
-                    {getStatusBadge(building.status)}
+                    <div className="shrink-0">
+                      {getStatusBadge(building.status)}
+                    </div>
                   </div>
 
                   {/* Stats - Inline */}
@@ -264,7 +266,7 @@ export default function BuildingsPage() {
                   </div>
 
                   {/* Actions */}
-                  <div className="flex gap-2 justify-end pt-3 border-t border-slate-700/50">
+                  <div className="flex flex-wrap gap-2 justify-end pt-3 border-t border-slate-700/50">
                     <Link href={`/expenses?building=${building.id}`}>
                       <Button size="sm" variant="secondary" className="bg-slate-700/50 hover:bg-slate-700 h-8 text-xs">
                         <Receipt className="w-3 h-3 mr-1" />
