@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Lock, User, ArrowRight, Building2, AlertCircle, Eye, EyeOff } from "lucide-react"
+// API URL from environment variable (default: localhost:8000)
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -15,6 +17,7 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
+  
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -29,7 +32,7 @@ export default function LoginPage() {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/api/token/", {
+      const response = await fetch(API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
